@@ -1,0 +1,6 @@
+/*
+This repo will contain experimental key concepts as well as excercices related to data structures and algorithms used for embedded systems. 
+
+The purpose is to have means to test implementations and have such experiments version controled to be able to mantain them. 
+ 
+*/
