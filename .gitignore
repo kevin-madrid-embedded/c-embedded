@@ -1,0 +1,4 @@
+#ignore binary files and duplicated files
+*.o
+*.out
+*.swp
