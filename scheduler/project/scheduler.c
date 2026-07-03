@@ -44,12 +44,12 @@ void Init_1000ms(void) {
 
 void Task_500ms(void) {
     static int loop = 0;
-    // printf("This is a counter from task 500ms: %d\n", loop++);
+    printf("This is a counter from task 500ms: %d\n", loop++);
 }
 
 void Task_1000ms(void) {
     static int loop = 0;
-    // printf("This is a counter from task 1000ms: %d\n", loop++);
+    printf("This is a counter from task 1000ms: %d\n", loop++);
 }
 long milliseconds(void) {
     return clock() / (CLOCKS_PER_SEC / 1000);
@@ -155,20 +155,13 @@ void HIL_SCHEDULER_StartScheduler(SCHEDULER_HandleTypeDef* hscheduler) {
     }
     uint8_t last_tick = 0;
     while (1) {
-        // printf("Functions Execution\n");
         if (milliseconds() - last_tick >= hscheduler->tick) {
             last_tick = milliseconds();
-            // printf("Milliseconds() = %d\n", last_tick);
             for (int i = 0; i < hscheduler->tasksCount; i++) {
                 if (hscheduler->taskPtr[i].enabled == 1) {
                     hscheduler->taskPtr[i].elapsed += hscheduler->tick;
-                    // printf("elapsed = %d, period = %d\n",
-                    //    hscheduler->taskPtr[i].elapsed,
-                    //    hscheduler->taskPtr[i].period);
-
                     if (hscheduler->taskPtr[i].elapsed >=
                         hscheduler->taskPtr[i].period) {
-                        // printf("Task to be excecuted = %d\n", i);
                         hscheduler->taskPtr[i].taskFunc();
                         hscheduler->taskPtr[i].elapsed = 0;
                     }
